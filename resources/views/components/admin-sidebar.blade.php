@@ -24,12 +24,12 @@
                 </div>
             </div>
 
-            <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Notice</a>
+            <a href="{{ route('notice') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Notice</a>
 
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Settings</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="signin.html" class="dropdown-item">Sign In</a>
+                    <a href="{{ route('website.setting') }}" class="dropdown-item">Website Setting</a>
                     <a href="signup.html" class="dropdown-item">Sign Up</a>
                     <a href="404.html" class="dropdown-item">404 Error</a>
                     <a href="blank.html" class="dropdown-item">Blank Page</a>
