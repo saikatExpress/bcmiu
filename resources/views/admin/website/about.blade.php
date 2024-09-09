@@ -18,7 +18,7 @@
                     <img style="width: 80px; height:80px;" src="{{ asset('storage/aboutimages/main/' . $about->main_image) }}" alt="">
                 </div>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="right_image">Right Image <span class="text-danger"> * </span></label>
                 <input type="file" class="form-control" id="right_image" name="right_image">
@@ -29,7 +29,7 @@
                     <img style="width: 80px; height:80px;" src="{{ asset('storage/aboutimages/right/' . $about->right_image) }}" alt="">
                 </div>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="left_image">Left Image <span class="text-danger"> * </span></label>
                 <input type="file" class="form-control" id="left_image" name="left_image">
@@ -40,7 +40,7 @@
                     <img style="width: 80px; height:80px;" src="{{ asset('storage/aboutimages/left/' . $about->left_image) }}" alt="">
                 </div>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="top_image">Top Image <span class="text-danger"> * </span></label>
                 <input type="file" class="form-control" id="top_image" name="top_image">
@@ -51,7 +51,7 @@
                     <img style="width: 80px; height:80px;" src="{{ asset('storage/aboutimages/top/' . $about->top_image) }}" alt="">
                 </div>
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="title">Title <span class="text-danger"> * </span></label>
                 <input type="text" class="form-control" id="title" name="title" value="{{ $about->title }}">
@@ -59,7 +59,7 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="description">Description <span class="text-danger"> * </span></label>
                 <textarea class="form-control" id="description" name="description" rows="4">{{ $about->description }}</textarea>
@@ -67,7 +67,7 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-
+            <br>
             <div class="form-group">
                 <label for="status">Status</label>
                 <select class="form-control" id="status" name="status">
@@ -78,8 +78,8 @@
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
-
-            <button type="submit" class="btn btn-primary">Save About Information</button>
+            <br>
+            <button type="submit" class="btn btn-primary btn-sm mt-3">Save About Information</button>
         </form>
     </div>
 </div>

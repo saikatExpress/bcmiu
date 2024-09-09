@@ -30,7 +30,7 @@
                 <div id="loaderGif" style="display: none;">
                     <img src="{{ asset('logos/200w.gif') }}" alt="Loading..." class="saturate">
                 </div>
-                <header class="bg-primary text-white">
+                <header class="">
                     <nav class="navbar navbar-expand-lg navbar-dark">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -85,8 +85,8 @@
                     </nav>
                 </header>
 
-                <div class="container-fluid mt-3">
-                    <div id="content">
+                <div class="mt-3" style="height: 100%;">
+                    <div id="content" style="padding: 8px 10px 8px;">
 
                     </div>
                 </div>

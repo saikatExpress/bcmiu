@@ -26,7 +26,7 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
-
+     @livewireStyles
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 </head>
@@ -139,7 +139,7 @@
             </nav>
             <!-- Navbar End -->
             @yield('content')
-
+            @livewireScripts
             @include('admin.layout.footer')
         </div>
         <!-- Content End -->

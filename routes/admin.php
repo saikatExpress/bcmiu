@@ -19,6 +19,7 @@ Route::middleware(['auth', 'CheckAdmin'])->group(function(){
 
     Route::prefix('notice')->group(function(){
         Route::controller(NoticeController::class)->group(function(){
+            Route::get('/list', 'index')->name('notices.index');
             Route::get('/', 'create')->name('notice');
             Route::post('/', 'store')->name('notices.store');
         });
@@ -59,4 +60,7 @@ Route::middleware(['auth', 'CheckAdmin'])->group(function(){
         Route::post('/banners/update', 'update')->name('banners.update');
         Route::get('/banner/delete/{id}', 'destroy');
     });
+
+    Route::get('/notices/data', [NoticeController::class, 'data'])->name('notices.data');
+
 });
