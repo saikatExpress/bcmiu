@@ -1,0 +1,38 @@
+.loader {
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.input-focus:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+.error-message {
+    color: #ef4444;
+}
+.hidden {
+    display: none;
+}
+.form-container {
+    animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
