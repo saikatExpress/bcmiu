@@ -8,7 +8,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>ONNOTOMO | Portfolio management System</title>
+        <title>BCMIU | Bangladesh Capital Market Investor Union</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
