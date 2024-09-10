@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Services\Login;
 use Illuminate\Http\Request;
 use App\Services\ValidationService;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -45,6 +46,7 @@ class LoginController extends Controller
                 if($authUser->role === 'admin'){
                     return response()->json(['success' => true, 'message' => 'Authentication Successfull.Please wait...', 'role' => $authUser->role]);
                 }elseif($authUser->role === 'user'){
+                    $user->update(['otp' => null, 'user_agent' => $request->header('User-Agent'),'login_at' => Carbon::now()]);
                     return response()->json(['success' => true, 'message' => 'Authentication Successfull.Please wait...', 'role' => $authUser->role]);
                 }
             }

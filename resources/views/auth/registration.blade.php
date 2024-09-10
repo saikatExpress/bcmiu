@@ -50,7 +50,7 @@
             </div>
 
             <div class="mb-4">
-                <label for="mobile" class="block text-sm font-medium text-gray-700">Mobile</label>
+                <label for="mobile" class="block text-sm font-medium text-gray-700">Whatsapp</label>
                 <input id="mobile" name="mobile" type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm input-focus" value="{{ old('mobile') }}">
                 @error('mobile')
                     <p class="error-message mt-2 text-sm">{{ $message }}</p>
