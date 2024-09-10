@@ -18,7 +18,12 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Home</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="#" class="dropdown-item">Home</a>
+                    <a href="{{ route('createuser') }}" class="dropdown-item">
+                        Create User
+                    </a>
+                    <a href="{{ route('userlist') }}" class="dropdown-item">
+                        User List
+                    </a>
                 </div>
             </div>
 

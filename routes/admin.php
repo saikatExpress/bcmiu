@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\FaqController;
 use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\admin\BannerController;
 use App\Http\Controllers\admin\NoticeController;
 use App\Http\Controllers\admin\ServiceController;
@@ -14,6 +15,15 @@ Route::middleware(['auth', 'CheckAdmin'])->group(function(){
     Route::prefix('dashboard')->group(function(){
         Route::controller(AdminController::class)->group(function(){
             Route::get('/', 'index')->name('admin.dashboard');
+        });
+    });
+
+    Route::prefix('user')->group(function(){
+        Route::controller(AdminUserController::class)->group(function(){
+            Route::get('/list', 'index')->name('userlist');
+            Route::get('/fetch', 'fetchUsers')->name('users.fetch');
+            Route::get('/create', 'create')->name('createuser');
+            Route::post('/store', 'store')->name('usersstore');
         });
     });
 
