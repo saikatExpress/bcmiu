@@ -38,45 +38,45 @@
                         <div class="collapse navbar-collapse" id="navbarNav">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('create.faq') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('create.faq') }}" data-target="#content">
                                         Faq
                                     </a>
                                 </li>
 
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('faq.list') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('faq.list') }}" data-target="#content">
                                         Faq List
                                     </a>
                                 </li>
 
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('create.about') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('create.about') }}" data-target="#content">
                                         Update About
                                     </a>
                                 </li>
 
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('create.banner') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('create.banner') }}" data-target="#content">
                                         Banner
                                     </a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('banner.list') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('banner.list') }}" data-target="#content">
                                         Banner List
                                     </a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('create.service') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('create.service') }}" data-target="#content">
                                         Service
                                     </a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('service.list') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('service.list') }}" data-target="#content">
                                         Service List
                                     </a>
                                 </li>
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#" data-url="{{ route('project.info') }}" data-target="#content">
+                                    <a class="nav-link navItem" href="#" data-url="{{ route('project.info') }}" data-target="#content">
                                         Project Info
                                     </a>
                                 </li>

@@ -45,7 +45,7 @@
                                 <i class="dw dw-edit2"></i>
                             </button>
                             <button class="btn btn-sm btn-danger deletebannerButton" data-id="{{ $item->id }}">
-                                <i class="dw dw-delete-3"></i>
+                                <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
                     </tr>

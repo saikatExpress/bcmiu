@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.nav-link').on('click', function (e) {
+    $('.navItem').on('click', function (e) {
         e.preventDefault();
         var url = $(this).data('url');
         var target = $(this).data('target');

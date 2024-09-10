@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="name">Name <span class="text-danger"> * </span></label>
-                    <input type="text" class="form-control" id="name" name="name" value="Welcome ONNOTOMO Portfolio Management Service">
+                    <input type="text" class="form-control" id="name" name="name" value="Welcome Bangladesh Capital Market Investor Union">
                     @error('name')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -40,7 +40,7 @@
 
                 <!-- Social Links -->
                 <div class="form-group">
-                    <button type="button" class="btn btn-sm btn-info" id="toggleSocialLinks">Add Social Links</button>
+                    <button type="button" class="btn btn-sm btn-info mt-3 mb-2" id="toggleSocialLinks">Add Social Links</button>
                 </div>
 
                 <div id="socialLinks" style="display: none;">
@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-sm btn-primary">Save Banner</button>
+                <button type="submit" class="btn btn-sm btn-primary mt-3">Save Banner</button>
             </form>
         </div>
     </div>

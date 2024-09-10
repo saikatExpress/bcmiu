@@ -31,12 +31,12 @@
                         <td>
                             <button type="button" class="btn btn-sm btn-primary ml-2 faqEdit"
                             data-title="{{ $item->title }}" data-description="{{ $item->description }}"
-                            data-id="{{ $item->id }}"  data-toggle="modal" data-target="#editFaqModal">
-                                <i class="dw dw-edit2"></i>
+                            data-id="{{ $item->id }}"  data-bs-toggle="modal" data-bs-target="#editFaqModal">
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </button>
 
                             <button class="btn btn-sm btn-danger ml-2 deletefaqButton" data-id="{{ $item->id }}">
-                                <i class="dw dw-delete-3"></i>
+                                <i class="fa-solid fa-trash"></i>
                             </button>
                         </td>
                     </tr>
@@ -56,7 +56,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editFaqModalLabel">Edit Item</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -72,11 +72,11 @@
                         <label for="exampleInput">Description</label>
                         <textarea class="form-control" id="faqDescription" name="description"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-sm btn-primary mt-2">Save changes</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
