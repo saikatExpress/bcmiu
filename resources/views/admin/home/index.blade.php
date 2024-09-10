@@ -49,7 +49,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Recent Salse</h6>
+                <h6 class="mb-0">User Login Information</h6>
                 <a href="">Show All</a>
             </div>
             <div class="table-responsive">
@@ -57,60 +57,30 @@
                     <thead>
                         <tr class="text-dark">
                             <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Invoice</th>
-                            <th scope="col">Customer</th>
-                            <th scope="col">Amount</th>
+                            <th scope="col">User</th>
+                            <th scope="col">Login At</th>
+                            <th scope="col">Logout At</th>
+                            <th scope="col">Joining At</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox"></td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>Paid</td>
-                            <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox"></td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>Paid</td>
-                            <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox"></td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>Paid</td>
-                            <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox"></td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>Paid</td>
-                            <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                        </tr>
-                        <tr>
-                            <td><input class="form-check-input" type="checkbox"></td>
-                            <td>01 Jan 2045</td>
-                            <td>INV-0123</td>
-                            <td>Jhon Doe</td>
-                            <td>$123</td>
-                            <td>Paid</td>
-                            <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
-                        </tr>
+                        @forelse ($logins as $login)
+                            <tr>
+                                <td><input class="form-check-input" type="checkbox"></td>
+                                <td>{{ $login->name }}</td>
+                                <td>{{ $login->login_at ? \Carbon\Carbon::parse($login->login_at)->format('d M Y H:i') : 'N/A' }}</td>
+                                <td>{{ $login->logout_at ? \Carbon\Carbon::parse($login->logout_at)->format('d M Y H:i') : 'N/A' }}</td>
+                                <td>{{ $login->joining_at ? \Carbon\Carbon::parse($login->joining_at)->format('d M Y H:i') : 'N/A' }}</td>
+                                <td>{{ $login->status }}</td>
+                                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">No login information available</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
