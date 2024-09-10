@@ -5,8 +5,10 @@
          <div class="row">
             <div class="col-12">
                 <div class="bg-light p-4 rounded">
-                    <h3 class="mb-4">Create Notice</h3>
-
+                    <div style="display: flex;align-items: center;justify-content: space-between;">
+                        <h3 class="mb-4">Create Notice</h3>
+                        <a href="{{ route('notices.index') }}" class="btn btn-sm btn-primary">Notice List</a>
+                    </div>
                     <!-- Notice Form -->
                     <form method="POST" action="{{ route('notices.store') }}" id="noticeForm">
                         @csrf
