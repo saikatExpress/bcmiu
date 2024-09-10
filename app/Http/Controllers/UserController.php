@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,6 +16,8 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('user.home.index');
+        $notices = Notice::latest()->get();
+        // return $notices;
+        return view('user.home.index', compact('notices'));
     }
 }
