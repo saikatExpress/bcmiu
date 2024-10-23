@@ -30,7 +30,7 @@
                     <tr class="list-item">
                         <td>{{ $sl }}</td>
                         <td>
-                            <img style="width: 60px;height:60px;border-radius:50%;" src="{{ asset('storage/bannerimages/'.$item->banner_image) }}" alt="Banner">
+                            <img style="width: 60px;height:60px;border-radius:50%;" src="{{ asset('bannerimages/'.$item->banner_image) }}" alt="Banner">
                         </td>
                         <td>
                             {{ $item->title }}
@@ -42,7 +42,7 @@
 
                         <td>
                             <button class="btn btn-sm btn-primary editBannerBtn" data-id="{{ $item->id }}">
-                                <i class="dw dw-edit2"></i>
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <button class="btn btn-sm btn-danger deletebannerButton" data-id="{{ $item->id }}">
                                 <i class="fa-solid fa-trash"></i>
@@ -108,7 +108,7 @@
                 <input type="text" class="form-control" id="linkedin_link" name="linkedin_link">
             </div>
 
-            <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-sm btn-primary mt-3">Save Changes</button>
         </form>
     </div>
 </div>

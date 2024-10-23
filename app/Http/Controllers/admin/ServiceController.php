@@ -55,12 +55,12 @@ class ServiceController extends Controller
             $service = new Service();
 
             if ($request->hasFile('service_image')) {
-                $file     = $request->file('service_image');
+                $file = $request->file('service_image');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
-
-                $file->storeAs('serviceimages', $filename, 'public');
+                $file->move(public_path('serviceimages'), $filename);
                 $service->service_image = $filename;
             }
+
 
             $service->name        = $request->name;
             $service->title       = $request->title;
@@ -96,19 +96,14 @@ class ServiceController extends Controller
             $service = Service::findOrFail($id);
 
             if($service){
-                $filename = $service->service_image;
-
-                if ($filename) {
-                    Storage::disk('public')->delete('serviceimages/' . $filename);
-
-                    File::delete(public_path('serviceimages/' . $filename));
-                }
-
                 if ($request->hasFile('service_image')) {
-                    $file     = $request->file('service_image');
+                    $filename = $service->service_image;
+                    if (file_exists(public_path('serviceimages/' . $filename))) {
+                        unlink(public_path('serviceimages/' . $filename));
+                    }
+                    $file = $request->file('service_image');
                     $filename = time() . '.' . $file->getClientOriginalExtension();
-
-                    $file->storeAs('serviceimages', $filename, 'public');
+                    $file->move(public_path('serviceimages'), $filename);
                     $service->service_image = $filename;
                 }
 

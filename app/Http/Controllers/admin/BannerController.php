@@ -58,10 +58,9 @@ class BannerController extends Controller
             $banner = new Banner();
 
             if ($request->hasFile('banner_image')) {
-                $file     = $request->file('banner_image');
+                $file = $request->file('banner_image');
                 $filename = time() . '.' . $file->getClientOriginalExtension();
-
-                $file->storeAs('bannerimages', $filename, 'public');
+                $file->move(public_path('bannerimages'), $filename);
                 $banner->banner_image = $filename;
             }
 
@@ -119,19 +118,14 @@ class BannerController extends Controller
             $banner = Banner::find($id);
 
             if($banner){
-                $filename = $banner->banner_image;
-
-                if ($filename) {
-                    Storage::disk('public')->delete('bannerimages/' . $filename);
-
-                    File::delete(public_path('bannerimages/' . $filename));
-                }
-
                 if ($request->hasFile('banner_image')) {
+                    $filename = $banner->banner_image;
+                    if (file_exists(public_path('bannerimages/' . $filename))) {
+                        unlink(public_path('bannerimages/' . $filename));
+                    }
                     $file     = $request->file('banner_image');
                     $filename = time() . '.' . $file->getClientOriginalExtension();
-
-                    $file->storeAs('bannerimages', $filename, 'public');
+                    $file->move(public_path('bannerimages'), $filename);
                     $banner->banner_image = $filename;
                 }
 

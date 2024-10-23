@@ -10,6 +10,7 @@
             opacity: 0.5;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <div class="card">
         <div class="card-header">
             <h4>Update Project Info</h4>
@@ -152,13 +153,14 @@
 
                 <!-- Navigation Buttons -->
                 <div class="form-group">
-                    <button type="button" class="btn btn-primary" id="prevBtn">Previous</button>
-                    <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
-                    <button type="submit" class="btn btn-success" id="submitBtn">Submit</button>
+                    <button type="button" class="btn btn-sm btn-primary mt-3" id="prevBtn">Previous</button>
+                    <button type="button" class="btn btn-sm btn-primary mt-3" id="nextBtn">Next</button>
+                    <button type="submit" class="btn btn-sm btn-success mt-3" id="submitBtn">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 
  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
  <script src="{{ asset('assets/js/admin/projects.js') }}"></script>

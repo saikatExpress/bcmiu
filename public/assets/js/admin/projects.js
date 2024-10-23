@@ -55,10 +55,10 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                if (data.success) {
-                    alert('Form submitted successfully!');
+                if (data && data.success === true) {
+                    toastr.success('Project Information successfully updated!');
                 } else {
-                    alert('Error submitting form.');
+                    toastr.error('Error submitting form.');
                 }
             },
             error: function(xhr, status, error) {

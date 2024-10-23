@@ -40,68 +40,50 @@ class AboutController extends Controller
         $about = About::first() ?: new About();
 
         if ($request->hasFile('main_image')) {
-            $filename = $about->main_image;
-
-            if ($filename) {
-                Storage::disk('public')->delete('aboutimages/main/' . $filename);
-
-                File::delete(public_path('aboutimages/main/' . $filename));
+            if (file_exists(public_path('aboutimages/main/' . $about->main_image))) {
+                unlink(public_path('aboutimages/main/' . $about->main_image));
             }
 
-            $file     = $request->file('main_image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $mainImage = $request->file('main_image');
+            $mainImageName = time() . '_main.' . $mainImage->getClientOriginalExtension();
 
-            $file->storeAs('aboutimages/main', $filename, 'public');
-            $about->main_image = $filename;
+            $mainImage->move(public_path('aboutimages/main'), $mainImageName);
+
+            $about->main_image = $mainImageName;
         }
 
         if ($request->hasFile('right_image')) {
-            $filename = $about->right_image;
-
-            if ($filename) {
-                Storage::disk('public')->delete('aboutimages/right/' . $filename);
-
-                File::delete(public_path('aboutimages/right/' . $filename));
+            if (file_exists(public_path('aboutimages/right/' . $about->right_image))) {
+                unlink(public_path('aboutimages/right/' . $about->right_image));
             }
 
-            $file     = $request->file('right_image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-
-            $file->storeAs('aboutimages/right', $filename, 'public');
-            $about->right_image = $filename;
+            $rightImage = $request->file('right_image');
+            $rightImageName = time() . '_right.' . $rightImage->getClientOriginalExtension();
+            $rightImage->move(public_path('aboutimages/right'), $rightImageName);
+            $about->right_image = $rightImageName;
         }
 
         if ($request->hasFile('left_image')) {
-            $filename = $about->left_image;
-
-            if ($filename) {
-                Storage::disk('public')->delete('aboutimages/left/' . $filename);
-
-                File::delete(public_path('aboutimages/left/' . $filename));
+            if (file_exists(public_path('aboutimages/left/' . $about->left_image))) {
+                unlink(public_path('aboutimages/left/' . $about->left_image));
             }
 
-            $file     = $request->file('left_image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-
-            $file->storeAs('aboutimages/left', $filename, 'public');
-            $about->left_image = $filename;
+            $leftImage = $request->file('left_image');
+            $leftImageName = time() . '_left.' . $leftImage->getClientOriginalExtension();
+            $leftImage->move(public_path('aboutimages/left'), $leftImageName);
+            $about->left_image = $leftImageName;
         }
+
         if ($request->hasFile('top_image')) {
-            $filename = $about->top_image;
-
-            if ($filename) {
-                Storage::disk('public')->delete('aboutimages/top/' . $filename);
-
-                File::delete(public_path('aboutimages/top/' . $filename));
+            if (file_exists(public_path('aboutimages/top/' . $about->top_image))) {
+                unlink(public_path('aboutimages/top/' . $about->top_image));
             }
 
-            $file     = $request->file('top_image');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-
-            $file->storeAs('aboutimages/top', $filename, 'public');
-            $about->top_image = $filename;
+            $topImage = $request->file('top_image');
+            $topImageName = time() . '_top.' . $topImage->getClientOriginalExtension();
+            $topImage->move(public_path('aboutimages/top'), $topImageName);
+            $about->top_image = $topImageName;
         }
-
         $about->title       = $request->title;
         $about->description = $request->description;
         $about->status      = $request->status;

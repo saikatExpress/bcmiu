@@ -21,14 +21,14 @@
                     <tr class="list-item">
                         <td>{{ $sl }}</td>
                         <td>
-                            <img style="width: 60px;height:60px;border-radius:50%;" src="{{ asset('storage/serviceimages/'.$item->service_image) }}" alt="Service">
+                            <img style="width: 60px;height:60px;border-radius:50%;" src="{{ asset('serviceimages/'.$item->service_image) }}" alt="Service">
                         </td>
                         <td>
                             {{ $item->title }}
                         </td>
 
                         <td>
-                            {{ textFormat($item->description) . ' ...' }}
+                            {{ $item->description }}
                         </td>
 
                         <td>
@@ -36,10 +36,10 @@
                             data-title="{{ $item->title }}" data-description="{{ $item->description }}" data-name="{{ $item->name }}"
                             data-image="{{ $item->service_image }}"
                             data-id="{{ $item->id }}"  data-toggle="modal" data-target="#editServiceModal">
-                                <i class="dw dw-edit2"></i>
+                                <i class="fa-solid fa-pen-to-square"></i>
                             </button>
                             <button class="btn btn-sm btn-danger deleteserviceButton" data-id="{{ $item->id }}">
-                                <i class="dw dw-delete-3"></i>
+                                <i class="fa-solid fa-delete-left"></i>
                             </button>
                         </td>
                     </tr>
@@ -112,17 +112,19 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-sm btn-primary mt-3">Save changes</button>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ asset('assets/js/admin/service.js') }}"></script>
 
