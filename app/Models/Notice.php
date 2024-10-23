@@ -15,6 +15,8 @@ class Notice extends Model
         'type',
         'publish_date',
         'effective_date',
+        'privacy_type',
+        'created_by',
         'status',
         'contact_email',
         'contact_phone',

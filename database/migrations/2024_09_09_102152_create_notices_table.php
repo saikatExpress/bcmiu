@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('type', 250);
             $table->date('publish_date')->nullable();
             $table->date('effective_date')->nullable();
-            $table->string('status')->default('active');
             $table->string('contact_email')->nullable();
             $table->string('contact_phone')->nullable();
+            $table->string('privacy_type')->default('own');
+            $table->integer('created_by')->nullable();
+            $table->string('status')->default('active');
             $table->timestamps();
 
             $table->index('type');
