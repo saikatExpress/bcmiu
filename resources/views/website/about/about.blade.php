@@ -70,28 +70,28 @@
                 <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
                     <div class="bg-primary rounded position-relative overflow-hidden">
                         @if ($about->main_image != '')
-                            <img src="{{ asset('storage/aboutimages/main/' . $about->main_image) }}" class="img-fluid rounded w-100" alt="">
+                            <img src="{{ asset('aboutimages/main/' . $about->main_image) }}" class="img-fluid rounded w-100" alt="">
                         @else
                             <img src="{{ asset('website/img/about-2.png') }}" class="img-fluid rounded w-100" alt="">
                         @endif
 
                         <div class="" style="position: absolute; top: -15px; right: -15px;">
                             @if ($about->right_image != '')
-                                <img src="{{ asset('storage/aboutimages/right/' . $about->right_image) }}" class="img-fluid" style="width: 150px; height: 150px; opacity: 0.7;" alt="">
+                                <img src="{{ asset('aboutimages/right/' . $about->right_image) }}" class="img-fluid" style="width: 150px; height: 150px; opacity: 0.7;" alt="">
                             @else
                                 <img src="{{ asset('website/img/about-3.png') }}" class="img-fluid" style="width: 150px; height: 150px; opacity: 0.7;" alt="">
                             @endif
                         </div>
                         <div class="" style="position: absolute; top: -20px; left: 10px; transform: rotate(90deg);">
                             @if ($about->left_image != '')
-                                <img src="{{ asset('storage/aboutimages/left/' . $about->left_image) }}" class="img-fluid" style="width: 100px; height: 150px; opacity: 0.9;" alt="">
+                                <img src="{{ asset('aboutimages/left/' . $about->left_image) }}" class="img-fluid" style="width: 100px; height: 150px; opacity: 0.9;" alt="">
                             @else
                                 <img src="{{ asset('website/img/about-4.png') }}" class="img-fluid" style="width: 100px; height: 150px; opacity: 0.9;" alt="">
                             @endif
                         </div>
                         <div class="rounded-bottom">
                             @if ($about->top_image != '')
-                                <img src="{{ asset('storage/aboutimages/top/' . $about->top_image) }}" class="img-fluid rounded-bottom w-100" alt="">
+                                <img src="{{ asset('aboutimages/top/' . $about->top_image) }}" class="img-fluid rounded-bottom w-100" alt="">
                             @else
                                 <img src="{{ asset('website/img/about-5.jpg') }}" class="img-fluid rounded-bottom w-100" alt="">
                             @endif

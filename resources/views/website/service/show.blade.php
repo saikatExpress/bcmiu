@@ -40,7 +40,7 @@
             <!-- Service Content Start -->
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{ asset('storage/serviceimages/' . $service->service_image) }}" class="img-fluid rounded" alt="{{ $service->title }}">
+                    <img src="{{ asset('serviceimages/' . $service->service_image) }}" class="img-fluid rounded" alt="{{ $service->title }}">
                 </div>
                 <div class="col-md-8">
                     <h2 class="mt-2">{{ $service->title }}</h2>
@@ -57,7 +57,7 @@
                     @foreach($otherservices as $otherService)
                         <div class="col-md-4 mb-4">
                             <div class="card">
-                                <img src="{{ asset('storage/serviceimages/' . $otherService->service_image) }}" class="card-img-top" alt="{{ $otherService->title }}">
+                                <img src="{{ asset('serviceimages/' . $otherService->service_image) }}" class="card-img-top" alt="{{ $otherService->title }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $otherService->title }}</h5>
                                     <p class="card-text">{{ Str::limit($otherService->description, 100, '...') }}</p>
