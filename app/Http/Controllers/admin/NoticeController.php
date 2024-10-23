@@ -17,7 +17,9 @@ class NoticeController extends Controller
     }
 
     public function index(Request $request)
-    {   $data['notices'] = Notice::latest()->get();
+    {   
+        $data['notices'] = Notice::latest()->get();
+        
         return view('admin.notice.index')->with($data);
     }
 
@@ -37,6 +39,7 @@ class NoticeController extends Controller
             'status'         => 'required|string',
             'contact_email'  => 'nullable|email',
             'contact_phone'  => 'nullable|string',
+            'privacy_type'   => 'required|string',
         ]);
 
         Notice::create($request->all());
@@ -62,5 +65,13 @@ class NoticeController extends Controller
                 return $notice->updated_at->format('Y-m-d H:i:s');
             })
             ->make(true);
+    }
+
+    public function destroy($id)
+    {
+        $notice = Notice::findOrFail($id);
+        $notice->delete();
+
+        return response()->json(['success' => 'Notice deleted successfully']);
     }
 }

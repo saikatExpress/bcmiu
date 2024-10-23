@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Division;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,7 +22,9 @@ class BranchController extends Controller
 
     public function create()
     {
-        return view('admin.branch.create');
+        $divisions = Division::all();
+        
+        return view('admin.branch.create', compact('divisions'));
     }
 
     public function store(Request $request)
@@ -117,5 +120,4 @@ class BranchController extends Controller
 
         return response()->json(['success' => 'Branch deleted successfully']);
     }
-
 }

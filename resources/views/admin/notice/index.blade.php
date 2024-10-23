@@ -26,6 +26,7 @@
                                         <th>Status</th>
                                         <th>Contact Email</th>
                                         <th>Contact Phone</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,6 +41,14 @@
                                             <td>{{ $notice->status }}</td>
                                             <td>{{ $notice->contact_email }}</td>
                                             <td>{{ $notice->contact_phone }}</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger deleteBtn" data-id="{{ $notice->id }}">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>
@@ -54,4 +63,20 @@
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('assets/js/admin/notice.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#successAlert').fadeOut('slow');
+            }, 2000);
+
+            setTimeout(function() {
+                $('#errorAlert').fadeOut('slow');
+            }, 2000);
+        });
+    </script>
 @endsection

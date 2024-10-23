@@ -10,7 +10,7 @@
                         <a href="{{ route('notices.index') }}" class="btn btn-sm btn-primary">Notice List</a>
                     </div>
                     <!-- Notice Form -->
-                    <form method="POST" action="{{ route('notices.store') }}" id="noticeForm">
+                    <form method="POST" action="{{ route('notices.store') }}" id="noticeForm" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
@@ -88,7 +88,18 @@
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Submit Notice</button>
+                            <label for="publish_type" class="form-label">Publish Type</label>
+                            <select id="publish_type" name="privacy_type" type="text" class="form-control" value="{{ old('publish_type') }}">
+                                <option value="all">All</option>
+                                <option value="branch">Only Branch</option>
+                            </select>
+                            @error('publish_type')
+                                <p class="text-danger mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-sm btn-primary">Submit Notice</button>
                         </div>
                     </form>
                 </div>

@@ -49,6 +49,7 @@ Route::middleware(['auth', 'CheckAdmin'])->group(function(){
             Route::get('/list', 'index')->name('notices.index');
             Route::get('/', 'create')->name('notice');
             Route::post('/', 'store')->name('notices.store');
+            Route::get('/delete/{id}', 'destroy')->name('notice-destroy');
         });
     });
 

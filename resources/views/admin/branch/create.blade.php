@@ -61,16 +61,11 @@
 
                             <div class="mb-3">
                                 <label for="division" class="form-label">Division</label>
-                                <select name="" id="" class="form-control @error('division') is-invalid @enderror" id="division" name="division" value="{{ old('division') }}">
-                                    <option value="" selected disabled>Select</option>
-                                    <option value="1">Dhaka</option>
-                                    <option value="2">Khulna</option>
-                                    <option value="3">Chattogram</option>
-                                    <option value="4">Sylhet</option>
-                                    <option value="5">Barisal</option>
-                                    <option value="6">Rangpur</option>
-                                    <option value="7">Rajshahi</option>
-                                    <option value="8">Mymensingh</option>
+                                <select class="form-control @error('division') is-invalid @enderror" id="division" name="division" value="{{ old('division') }}">
+                                    <option value="" selected disabled>Select Division</option>
+                                    @foreach ($divisions as $division)
+                                        <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                    @endforeach
                                 </select>
                                 @error('division')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -79,16 +74,8 @@
 
                             <div class="mb-3">
                                 <label for="district" class="form-label">District</label>
-                                <select name="" id="" class="form-control @error('district') is-invalid @enderror" id="district" name="district" value="{{ old('district') }}">
-                                    <option value="" selected disabled>Select</option>
-                                    <option value="1">Dhaka</option>
-                                    <option value="2">Khulna</option>
-                                    <option value="3">Chattogram</option>
-                                    <option value="4">Sylhet</option>
-                                    <option value="5">Barisal</option>
-                                    <option value="6">Rangpur</option>
-                                    <option value="7">Rajshahi</option>
-                                    <option value="8">Mymensingh</option>
+                                <select class="form-control @error('district') is-invalid @enderror" id="district" name="district" value="{{ old('district') }}">
+                                    <option value="" selected disabled>Select District</option>
                                 </select>
                                 @error('district')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -97,16 +84,8 @@
 
                             <div class="mb-3">
                                 <label for="division" class="form-label">Upazila</label>
-                                <select name="" id="" class="form-control @error('upazila') is-invalid @enderror" id="upazila" name="upazila" value="{{ old('upazila') }}">
-                                    <option value="" selected disabled>Select</option>
-                                    <option value="1">Dhaka</option>
-                                    <option value="2">Khulna</option>
-                                    <option value="3">Chattogram</option>
-                                    <option value="4">Sylhet</option>
-                                    <option value="5">Barisal</option>
-                                    <option value="6">Rangpur</option>
-                                    <option value="7">Rajshahi</option>
-                                    <option value="8">Mymensingh</option>
+                                <select class="form-control @error('upazila') is-invalid @enderror" id="upazila" name="upazila" value="{{ old('upazila') }}">
+                                    <option value="" selected disabled>Select Upazila</option>
                                 </select>
                                 @error('upazila')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -115,12 +94,11 @@
 
                             <div class="mb-3">
                                 <label for="whatsapp" class="form-label">Address</label>
-                                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}"></textarea>
+                                <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" placeholder="Write Your Union/Village/Road No etc"></textarea>
                                 @error('address')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
 
                             <button type="submit" class="btn btn-sm btn-primary">Create Branch</button>
                         </form>
@@ -129,5 +107,6 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/admin/geo.js') }}"></script>
 @endsection
