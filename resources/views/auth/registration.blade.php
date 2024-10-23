@@ -18,7 +18,7 @@
 
     <div class="form-container bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div class="text-center mb-6">
-            <img src="{{ asset('logos/BC.png') }}" alt="Logo" class="w-24 mx-auto mb-4">
+            <img src="{{ asset('logos/bgia.png') }}" alt="Logo" class="w-24 mx-auto mb-4">
             <h1 class="text-2xl font-semibold text-gray-700">Create Your Account</h1>
             <p class="text-gray-500">Please fill in the details below to register.</p>
         </div>
@@ -53,6 +53,39 @@
                 <label for="mobile" class="block text-sm font-medium text-gray-700">Whatsapp</label>
                 <input id="mobile" name="mobile" type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm input-focus" value="{{ old('mobile') }}">
                 @error('mobile')
+                    <p class="error-message mt-2 text-sm">{{ $message }}</p>
+                @enderror
+                <span id="mobileErr" class="text-sm text-danger" style="color: red;"></span>
+            </div>
+
+            <div class="mb-4">
+                <select id="division" name="division" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm input-focus">
+                    <option value="" selected disabled>Select a Division</option>
+                    @foreach ($divisions as $division)
+                        <option value="{{ $division->id }}">{{ $division->name }}</option>
+                    @endforeach
+                </select>
+                @error('division')
+                    <p class="error-message mt-2 text-sm">{{ $message }}</p>
+                @enderror
+                <span id="mobileErr" class="text-sm text-danger" style="color: red;"></span>
+            </div>
+
+            <div class="mb-4">
+                <select id="district" name="district" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm input-focus">
+                    <option value="" selected disabled>Select a District</option>
+                </select>
+                @error('district')
+                    <p class="error-message mt-2 text-sm">{{ $message }}</p>
+                @enderror
+                <span id="mobileErr" class="text-sm text-danger" style="color: red;"></span>
+            </div>
+
+            <div class="mb-4">
+                <select id="upazila" name="upazila" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm input-focus">
+                    <option value="" selected disabled>Select a Upazila</option>
+                </select>
+                @error('upazila')
                     <p class="error-message mt-2 text-sm">{{ $message }}</p>
                 @enderror
                 <span id="mobileErr" class="text-sm text-danger" style="color: red;"></span>

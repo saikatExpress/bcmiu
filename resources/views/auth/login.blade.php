@@ -14,7 +14,7 @@
     </div>
     <div class="form-container bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div class="text-center mb-6">
-            <img src="{{ asset('logos/BC.png') }}" alt="Logo" class="w-24 mx-auto mb-4">
+            <img src="{{ asset('logos/bgia.png') }}" alt="Logo" class="w-24 mx-auto mb-4">
             <h1 class="text-2xl font-semibold text-gray-700">Welcome Back</h1>
             <p class="text-gray-500">Please login to your account.</p>
         </div>

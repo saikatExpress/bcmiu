@@ -26,6 +26,9 @@ return new class extends Migration
             $table->string('bank_branch', 250)->nullable();
             $table->string('bank_account_no', 250)->nullable();
             $table->string('address', 500)->nullable();
+            $table->integer('division_id')->nullable();
+            $table->integer('district_id')->nullable();
+            $table->integer('upazila_id')->nullable();
             $table->timestamp('dob')->nullable();
             $table->string('gender', 30)->nullable();
             $table->string('fb_link', 250)->nullable();

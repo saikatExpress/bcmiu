@@ -55,6 +55,11 @@ Route::prefix('signup')->group(function(){
     });
 });
 
+Route::controller(RegistrationController::class)->group(function(){
+    Route::get('/get/division/{id}', 'getDistrict');
+    Route::get('/get/upazila/{id}', 'getUpazila');
+});
+
 Route::controller(HomeController::class)->group(function(){
     Route::get('/about', 'about')->name('about');
     Route::get('/terms/condition', 'term')->name('termscondition');
