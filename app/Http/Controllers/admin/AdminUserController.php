@@ -23,7 +23,7 @@ class AdminUserController extends Controller
         $search   = $request->input('search');
         $filterBy = $request->input('filterBy');
 
-        $query = User::query()->where('role', 'user');
+        $query = User::query()->where('role', 'user')->where('branch_id', auth()->user()->branch_id);
 
         if ($search) {
             switch ($filterBy) {
@@ -100,12 +100,15 @@ class AdminUserController extends Controller
 
     public function create()
     {
-        return view('admin.user.create');
+        $data['branches'] = Branch::where('status', 'active')->get();
+
+        return view('admin.user.create')->with($data);
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'branch'   => ['required'],
             'name'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users',
             'mobile'   => 'nullable|string|max:15',
@@ -114,10 +117,11 @@ class AdminUserController extends Controller
         ]);
 
         User::create([
+            'branch_id'  => $validated['branch'],
             'name'       => $validated['name'],
             'email'      => $validated['email'],
             'mobile'     => $validated['mobile'],
-            'whatsapp'   => $validated['whatsapp'],
+            'whatsapp'   => $validated['whatsapp'] ?? $validated['mobile'],
             'password'   => Hash::make($validated['password']),
             'role'       => 'user',
             'created_by' => Auth::id(),

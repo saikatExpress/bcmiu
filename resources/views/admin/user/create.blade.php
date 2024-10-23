@@ -12,6 +12,19 @@
                         <form action="{{ route('usersstore') }}" method="POST">
                             @csrf
                             <div class="mb-3">
+                                <label for="name" class="form-label">Branch <span class="text-danger">*</span></label>
+                                <select class="form-control @error('name') is-invalid @enderror" id="branch" name="branch" value="{{ old('branch') }}">
+                                    <option value="" disabled selected>Select</option>
+                                    @foreach ($branches as $branch)
+                                        <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('branch')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
                                 @error('name')
@@ -59,7 +72,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Create User</button>
+                            <button type="submit" class="btn btn btn-primary">Create User</button>
                         </form>
                     </div>
                 </div>
