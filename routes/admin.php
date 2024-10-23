@@ -20,7 +20,9 @@ Route::middleware(['auth', 'CheckAdmin'])->group(function(){
     });
 
     Route::controller(AdminUserController::class)->group(function(){
-        Route::get('create/admin', 'createAdmin')->name('create-admin');
+        Route::get('/admin/list', 'adminIndex')->name('adminlist');
+        Route::get('/create/admin', 'createAdmin')->name('create-admin');
+        Route::post('/admin/store', 'storeAdmin')->name('adminstore');
     });
 
     Route::prefix('branch')->group(function(){

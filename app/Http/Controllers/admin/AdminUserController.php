@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -49,9 +50,18 @@ class AdminUserController extends Controller
 
     }
 
+    public function adminIndex()
+    {
+        $data['admins'] = User::where('role', 'admin')->get();
+
+        return view('admin.user.adminindex')->with($data);
+    }
+
     public function createAdmin()
     {
-        return view('admin.user.admin');
+        $data['branches'] = Branch::where('status', 'active')->get();
+
+        return view('admin.user.admin')->with($data);
     }
 
     public function fetchUsers(Request $request)
@@ -117,5 +127,33 @@ class AdminUserController extends Controller
         ]);
 
         return redirect()->route('userlist')->with('message', 'User created successfully.');
+    }
+
+    public function storeAdmin(Request $request)
+    {
+        $validated = $request->validate([
+            'branch'   => ['required'],
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users',
+            'mobile'   => 'nullable|string|max:15',
+            'whatsapp' => 'nullable|string|max:15',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        User::create([
+            'branch_id'  => $validated['branch'],
+            'name'       => $validated['name'],
+            'email'      => $validated['email'],
+            'mobile'     => $validated['mobile'],
+            'whatsapp'   => $validated['whatsapp'] ?? $validated['mobile'],
+            'password'   => Hash::make($validated['password']),
+            'role'       => 'admin',
+            'created_by' => Auth::id(),
+            'joining_at' => Carbon::now(),
+            'status'     => 'active',
+            'created_at' => Carbon::now(),
+        ]);
+
+        return redirect()->back()->with('message', 'Admin created successfully.');
     }
 }

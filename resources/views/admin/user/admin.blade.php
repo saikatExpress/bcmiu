@@ -6,12 +6,38 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex align-items-center justify-content-between">
                         <h4>Create New Admin</h4>
+                        <a href="{{ route('adminlist') }}" class="btn btn-sm btn-primary">Admin List</a>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('usersstore') }}" method="POST">
+
+                        @if (session()->has('message'))
+                            <div class="alert alert-success" id="successAlert">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger" id="errorAlert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <form action="{{ route('adminstore') }}" method="POST">
                             @csrf
+                            <div class="mb-3">
+                                <label for="branch" class="form-label">Branch <span class="text-danger">*</span></label>
+                                <select class="form-control @error('branch') is-invalid @enderror" id="branch" name="branch" value="{{ old('branch') }}">
+                                    <option value="" selected disabled>Select</option>
+                                    @foreach ($branches as $branch)
+                                        <option value="{{ $branch->id }}">{{ $branch->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('branch')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
@@ -60,7 +86,7 @@
                                 @enderror
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Create User</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Create Admin</button>
                         </form>
                     </div>
                 </div>

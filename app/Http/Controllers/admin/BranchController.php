@@ -45,8 +45,8 @@ class BranchController extends Controller
             $branchObj->name       = Str::title($request->input('name'));
             $branchObj->slug       = Str::slug($request->input('name'), '-');
             $branchObj->email      = $request->input('email');
-            $branchObj->mobile     = $request->input('mobile') ?? $request->input('whatsapp');
-            $branchObj->whatssapp  = $request->input('whatsapp');
+            $branchObj->mobile     = $request->input('mobile');
+            $branchObj->whatssapp  = $request->input('whatsapp')  ?? $request->input('mobile');
             $branchObj->address    = $request->input('address');
             $branchObj->division   = $request->input('division');
             $branchObj->district   = $request->input('district');

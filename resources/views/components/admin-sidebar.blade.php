@@ -22,6 +22,9 @@
                         <a href="{{ route('create-admin') }}" class="dropdown-item">
                             Create Admin
                         </a>
+                        <a href="{{ route('adminlist') }}" class="dropdown-item">
+                            Admin List
+                        </a>
                     @endif
                     <a href="{{ route('createuser') }}" class="dropdown-item">
                         Create User
@@ -37,8 +40,12 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Branch</a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('create.branch') }}" class="dropdown-item">Create Branch</a>
-                    <a href="{{ route('branch-list') }}" class="dropdown-item">Branch List</a>
+                    @if (auth()->user()->role === 'super-admin')
+                        <a href="{{ route('create.branch') }}" class="dropdown-item">Create Branch</a>
+                        <a href="{{ route('branch-list') }}" class="dropdown-item">Branch List</a>
+                    @else
+                        <a href="" class="dropdown-item">Your Branch</a>
+                    @endif
                 </div>
             </div>
             <div class="nav-item dropdown">
