@@ -4,18 +4,24 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row">
             <div class="col-12">
-                <h2>User List</h2>
-                    @if (session()->has('message'))
-                        <div class="alert alert-success" id="successAlert">
-                            {{ session('message') }}
-                        </div>
-                    @endif
+                <div class="d-flex align-items-center justify-content-between">
+                    <h2>User List</h2>
+                    <a href="{{ route('createuser') }}" class="btn btn-sm btn-primary">
+                        Create User
+                    </a>
+                </div>
+                <hr>
+                @if (session()->has('message'))
+                    <div class="alert alert-success" id="successAlert">
+                        {{ session('message') }}
+                    </div>
+                @endif
 
-                    @if (session()->has('error'))
-                        <div class="alert alert-danger" id="errorAlert">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+                @if (session()->has('error'))
+                    <div class="alert alert-danger" id="errorAlert">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <!-- Search and Filter Form -->
                 <form id="search-form" method="GET" action="{{ route('userlist') }}">
                     <div class="input-group mb-3">

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use Carbon\Carbon;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\Division;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,8 +24,10 @@ class AdminUserController extends Controller
     {
         $search   = $request->input('search');
         $filterBy = $request->input('filterBy');
-
-        $query = User::query()->where('role', 'user')->where('branch_id', auth()->user()->branch_id);
+        $query = User::query()->where('role', 'user');
+        if (auth()->user()->role !== 'super-admin') {
+            $query->where('branch_id', auth()->user()->branch_id);
+        }
 
         if ($search) {
             switch ($filterBy) {
@@ -100,6 +104,7 @@ class AdminUserController extends Controller
 
     public function create()
     {
+        $data['divisions'] = Division::all();
         $data['branches'] = Branch::where('status', 'active')->get();
 
         return view('admin.user.create')->with($data);
@@ -107,30 +112,44 @@ class AdminUserController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'branch'   => ['required'],
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|email|unique:users',
-            'mobile'   => 'nullable|string|max:15',
-            'whatsapp' => 'nullable|string|max:15',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+        try {
+            DB::beginTransaction();
 
-        User::create([
-            'branch_id'  => $validated['branch'],
-            'name'       => $validated['name'],
-            'email'      => $validated['email'],
-            'mobile'     => $validated['mobile'],
-            'whatsapp'   => $validated['whatsapp'] ?? $validated['mobile'],
-            'password'   => Hash::make($validated['password']),
-            'role'       => 'user',
-            'created_by' => Auth::id(),
-            'joining_at' => Carbon::now(),
-            'status'     => 'active',
-            'created_at' => Carbon::now(),
-        ]);
+            $validated = $request->validate([
+                'branch'   => ['required'],
+                'name'     => 'required|string|max:255',
+                'email'    => 'required|email|unique:users',
+                'mobile'   => 'nullable|string|max:15|unique:users',
+                'whatsapp' => 'nullable|string|max:15',
+                'division' => 'nullable',
+                'district' => 'nullable',
+                'upazila'  => 'nullable',
+                'password' => 'required|string|min:8|confirmed',
+            ]);
 
-        return redirect()->route('userlist')->with('message', 'User created successfully.');
+            User::create([
+                'branch_id'   => $validated['branch'],
+                'name'        => $validated['name'],
+                'email'       => $validated['email'],
+                'mobile'      => $validated['mobile'],
+                'whatsapp'    => $validated['whatsapp'] ?? $validated['mobile'],
+                'division_id' => $request->input('division'),
+                'district_id' => $request->input('district'),
+                'upazila_id'  => $request->input('upazila'),
+                'password'    => Hash::make($validated['password']),
+                'role'        => 'user',
+                'created_by'  => Auth::id(),
+                'joining_at'  => Carbon::now(),
+                'status'      => 'active',
+                'created_at'  => Carbon::now(),
+            ]);
+
+            DB::commit();
+            return redirect()->route('userlist')->with('message', 'User created successfully.');
+        } catch (\Exception $e) {
+            DB::rollback();
+            info($e);
+        }
     }
 
     public function storeAdmin(Request $request)

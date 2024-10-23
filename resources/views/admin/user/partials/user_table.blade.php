@@ -6,7 +6,9 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Mobile</th>
-                <th>Address</th>
+                <th>Division</th>
+                <th>District</th>
+                <th>Upazila</th>
                 <th>WhatsApp</th>
                 <th>Joined At</th>
             </tr>
@@ -18,8 +20,14 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->mobile }}</td>
-                    <td>{{ $user->address }}</td>
-                    <td>{{ $user->whatsapp }}</td>
+                    <td>
+                        <a href="https://wa.me/88{{ $user->whatsapp }}" target="_blank">
+                            {{ $user->whatsapp }}
+                        </a>
+                    </td>
+                    <td>{{ divisionName($user->division_id) }}</td>
+                    <td>{{ districtName($user->district_id) }}</td>
+                    <td>{{ upazilaName($user->upazila_id) }}</td>
                     <td>{{ $user->created_at->format('Y-m-d') }}</td>
                 </tr>
             @empty
