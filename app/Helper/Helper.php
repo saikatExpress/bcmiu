@@ -2,6 +2,8 @@
 
 use App\Models\District;
 use App\Models\Division;
+use App\Models\Notice;
+use App\Models\Setting;
 use App\Models\Upazila;
 
 function welcome()
@@ -38,4 +40,22 @@ function upazilaName($id)
     }
 
     return 'N/A';
+}
+
+function totalMessage()
+{
+    return Notice::where('type', 'public')->count();
+}
+
+function messages()
+{
+    $notices = Notice::where('type', 'public')->get();
+
+    return $notices;
+}
+
+function projectName()
+{
+    $name = Setting::first();
+    return $name->project_name;
 }

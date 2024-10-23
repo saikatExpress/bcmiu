@@ -5,7 +5,7 @@
         <div class="row">
             <!-- Loop through notices and display each one in a card -->
             @forelse ($notices as $notice)
-                <div class="col-md-6 col-lg-4 mb-4">
+                <div class="col-md-12 col-lg-12 mb-12">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">{{ $notice->title }}</h5>
