@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\AboutController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AdminUserController;
 use App\Http\Controllers\admin\BannerController;
+use App\Http\Controllers\admin\BranchController;
 use App\Http\Controllers\admin\NoticeController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\WebsiteController;
@@ -15,6 +16,20 @@ Route::middleware(['auth', 'CheckAdmin'])->group(function(){
     Route::prefix('dashboard')->group(function(){
         Route::controller(AdminController::class)->group(function(){
             Route::get('/', 'index')->name('admin.dashboard');
+        });
+    });
+
+    Route::controller(AdminUserController::class)->group(function(){
+        Route::get('create/admin', 'createAdmin')->name('create-admin');
+    });
+
+    Route::prefix('branch')->group(function(){
+        Route::controller(BranchController::class)->group(function(){
+            Route::get('/list', 'index')->name('branch-list');
+            Route::get('/create', 'create')->name('create.branch');
+            Route::post('/save', 'store')->name('branch-store');
+            Route::post('/edit', 'update')->name('edit.branch');
+            Route::get('/delete/{id}', 'destroy')->name('branches.destroy');
         });
     });
 

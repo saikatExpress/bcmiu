@@ -43,7 +43,9 @@ class LoginController extends Controller
                 $request->session()->regenerate();
                 $request->session()->put('user_id', $authUser->id);
 
-                if($authUser->role === 'admin'){
+                if($authUser->role === 'super-admin'){
+                    return response()->json(['success' => true, 'message' => 'Authentication Successfull.Please wait...', 'role' => $authUser->role]);
+                }elseif($authUser->role === 'admin'){
                     return response()->json(['success' => true, 'message' => 'Authentication Successfull.Please wait...', 'role' => $authUser->role]);
                 }elseif($authUser->role === 'user'){
                     $user->update(['otp' => null, 'user_agent' => $request->header('User-Agent'),'login_at' => Carbon::now()]);

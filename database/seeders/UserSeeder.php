@@ -20,14 +20,14 @@ class UserSeeder extends Seeder
 
         User::insert([
             [
-                'id'         => 1000,
-                'name'       => 'ADMIN',
-                'email'      => 'admin@gmail.com',
-                'mobile'     => '01714761685',
-                'whatsapp'   => '01714761685',
+                'id'         => 999,
+                'name'       => 'Super Admin',
+                'email'      => 'superadmin@gmail.com',
+                'mobile'     => '01713761685',
+                'whatsapp'   => '01713761685',
                 'address'    => 'Nikunjo,Khilkhet,Dhaka',
                 'password'   => Hash::make($password),
-                'role'       => 'admin',
+                'role'       => 'super-admin',
                 'created_at' => $now,
             ],
         ]);

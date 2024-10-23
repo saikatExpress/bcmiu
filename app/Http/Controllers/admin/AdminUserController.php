@@ -19,7 +19,7 @@ class AdminUserController extends Controller
 
     public function index(Request $request)
     {
-        $search = $request->input('search');
+        $search   = $request->input('search');
         $filterBy = $request->input('filterBy');
 
         $query = User::query()->where('role', 'user');
@@ -47,6 +47,11 @@ class AdminUserController extends Controller
 
         return view('admin.user.index', compact('users'));
 
+    }
+
+    public function createAdmin()
+    {
+        return view('admin.user.admin');
     }
 
     public function fetchUsers(Request $request)

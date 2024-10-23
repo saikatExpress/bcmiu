@@ -12,6 +12,7 @@
             <a href="{{ route('home') }}">
                 <h1 class="text-primary" style="font-size: 20px; margin-bottom:0%; margin-right:1rem;">
                     <i class="fas fa-solid fa-money-bill"></i>
+                    <img src="{{ asset('logos/bgia.png') }}" alt="">
                     {{ $setting->project_name }}
                 </h1>
             </a>

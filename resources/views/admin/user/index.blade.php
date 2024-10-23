@@ -61,12 +61,10 @@
 
     <script>
         $(document).ready(function() {
-            // Automatically hide success message after 2 seconds
             setTimeout(function() {
                 $('#successAlert').fadeOut('slow');
             }, 2000);
 
-            // Automatically hide error message after 2 seconds
             setTimeout(function() {
                 $('#errorAlert').fadeOut('slow');
             }, 2000);

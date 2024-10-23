@@ -8,11 +8,11 @@
 
     <head>
         <meta charset="utf-8">
-        <title>BCMIU | Bangladesh Capital Market Investor Union</title>
+        <title>BGIA | Bangladesh General Investor Association</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
-        <link rel="shortcut icon" href="{{ asset('logos/logo1removebg.png') }}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{ asset('logos/bgia.png') }}" type="image/x-icon">
 
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,7 +100,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-4">
                         <div class="footer-item">
                             <a href="index.html" class="p-0">
-                                <h4 class="text-white"><i class="fas fa-search-dollar me-3"></i>ONNOTOMO</h4>
+                                <h4 class="text-white"><i class="fas fa-search-dollar me-3"></i>BGIA</h4>
                                 <!-- <img src="img/logo.png" alt="Logo"> -->
                             </a>
                             <p class="mb-4">
@@ -183,7 +183,7 @@
             <div class="container">
                 <div class="row g-4 align-items-center">
                     <div class="col-md-6 text-center text-md-start mb-md-0">
-                        <span class="text-body"><a href="{{ route('home') }}" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>BCMIU</a>, All right reserved.</span>
+                        <span class="text-body"><a href="{{ route('home') }}" class="border-bottom text-white"><i class="fas fa-copyright text-light me-2"></i>BGIA</a>, All right reserved.</span>
                     </div>
                     <div class="col-md-6 text-center text-md-end text-body">
                         Designed By <a class="border-bottom text-white" href="https://facebook.com">WEB Codex</a> Distributed By

@@ -38,6 +38,12 @@ $(document).ready(function(){
                 $('#loader').hide();
             },
             success: function(response){
+                if(response && response.success === true && response.role === 'super-admin'){
+                    $('#registrationSuccessMsg').text(response.message);
+                    setTimeout(function() {
+                        window.location.href = '/dashboard';
+                    }, 2000);
+                }
                 if(response && response.success === true && response.role === 'admin'){
                     $('#registrationSuccessMsg').text(response.message);
                     setTimeout(function() {

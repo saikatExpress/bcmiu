@@ -18,6 +18,11 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Home</a>
                 <div class="dropdown-menu bg-transparent border-0">
+                    @if (auth()->user()->role === 'super-admin')
+                        <a href="{{ route('create-admin') }}" class="dropdown-item">
+                            Create Admin
+                        </a>
+                    @endif
                     <a href="{{ route('createuser') }}" class="dropdown-item">
                         Create User
                     </a>
@@ -29,6 +34,13 @@
 
             <a href="{{ route('notice') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Notice</a>
 
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Branch</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('create.branch') }}" class="dropdown-item">Create Branch</a>
+                    <a href="{{ route('branch-list') }}" class="dropdown-item">Branch List</a>
+                </div>
+            </div>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Settings</a>
                 <div class="dropdown-menu bg-transparent border-0">
