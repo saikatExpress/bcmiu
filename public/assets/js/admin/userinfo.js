@@ -1,15 +1,37 @@
 $(document).ready(function() {
-    $('.editBtn').on('click', function() {
-        var groupId = $(this).data('id');
-        alert(groupId);
+    $(document).on('click','.editBtn', function() {
+        var userId = $(this).data('id');
+        
         $.ajax({
-            url: '/groups/' + groupId + '/edit',
+            url: '/user/' + userId + '/edit',
             type: 'GET',
-            success: function(data) {
-                $('#groupId').val(data.id);
-                $('#groupName').val(data.name);
-                $('#status').val(data.status);
-                $('#sidebar').fadeIn();
+            success: function(response) {
+                if (response.status === 'success') {
+                    var user = response.data;
+                    var formattedDate = timeFormat(user.created_at);
+
+                    $('.user-name').text(user.name);
+                    $('.user-branch').text("Branch:" + " " + user.branch.name);
+                    $('.user-email').text("Email:" + " " + user.email);
+                    $('.user-mobile').text("Mobile:" + " " + user.mobile);
+                    $('.user-whatsapp').text("Whatsapp:" + " " + user.whatsapp);
+                    $('.user-joining-date').text("Joined:" + " " + formattedDate);
+
+                    $('#userId').val(user.id);
+                    $('#branch').val(user.branch_id);
+                    $('#name').val(user.name);
+                    $('#email').val(user.email);
+                    $('#mobile').val(user.mobile);
+                    $('#whatsapp').val(user.whatsapp);
+                    $('#division_id').val(user.division_id);
+                    $('#district_id').val(user.district_id);
+                    $('#upazila_id').val(user.upazila_id);
+                    $('#role').val(user.role);
+                    $('#status').val(user.status);
+                    loadSelectOptions();
+                    
+                    $('#sidebar').show();
+                }
             },
             error: function(err) {
                 console.log("Error fetching group data:", err);
@@ -18,40 +40,97 @@ $(document).ready(function() {
     });
 
     $('#closeSidebar').on('click', function() {
-        $('#sidebar').fadeOut();
+        $('#sidebar').hide();
     });
 
-    $('#updateGroupForm').on('submit', function(e) {
+    function timeFormat(timestamp) {
+        var date = new Date(timestamp);
+
+        var day = ('0' + date.getDate()).slice(-2);
+        var month = ('0' + (date.getMonth() + 1)).slice(-2);
+        var year = date.getFullYear().toString().slice(-2);
+
+        var hours = date.getHours();
+        var minutes = ('0' + date.getMinutes()).slice(-2);
+
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        hours = hours % 12 || 12;
+
+        var formattedDate = day + '-' + month + '-' + year + ', ' + hours + ':' + minutes + ' ' + ampm;
+
+        return formattedDate;
+    }
+
+
+    function loadSelectOptions() {
+        $.ajax({
+            url: '/get-divisions',
+            type: 'GET',
+            success: function(data) {
+                var divisionOptions = '<option value="">Select Division</option>';
+                $.each(data.divisions, function(key, division) {
+                    divisionOptions += '<option value="' + division.id + '">' + division.name + '</option>';
+                });
+                $('#division_id').html(divisionOptions);
+            }
+        });
+
+        // Load districts when division is selected
+        $('#division_id').change(function() {
+            var divisionId = $(this).val();
+            $.ajax({
+                url: '/get-districts/' + divisionId,
+                type: 'GET',
+                success: function(data) {
+                    var districtOptions = '<option value="">Select District</option>';
+                    $.each(data.districts, function(key, district) {
+                        districtOptions += '<option value="' + district.id + '">' + district.name + '</option>';
+                    });
+                    $('#district_id').html(districtOptions);
+                }
+            });
+        });
+
+        // Load upazilas when district is selected
+        $('#district_id').change(function() {
+            var districtId = $(this).val();
+            $.ajax({
+                url: '/get-upazilas/' + districtId,
+                type: 'GET',
+                success: function(data) {
+                    var upazilaOptions = '<option value="">Select Upazila</option>';
+                    $.each(data.upazilas, function(key, upazila) {
+                        upazilaOptions += '<option value="' + upazila.id + '">' + upazila.name + '</option>';
+                    });
+                    $('#upazila_id').html(upazilaOptions);
+                }
+            });
+        });
+    }
+
+    $('#updateUserForm').submit(function(e) {
         e.preventDefault();
-        
-        var groupId   = $('#groupId').val();
-        var groupName = $('#groupName').val();
-        var status    = $('#status').val();
+
+        var userId = $('#userId').val();
+        var formData = $(this).serialize();
 
         $.ajax({
-            url: '/groups/' + groupId,
-            type: 'PUT',
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            data: {
-                name: groupName,
-                status: status,
-            },
+            url: '/users/' + userId + '/update',
+            type: 'POST',
+            data: formData,
             success: function(response) {
-                var statusLabel = $('.status-' + response.group.id + ' label');
-                if (response.group.status === 'active') {
-                    statusLabel.removeClass('btn-danger').addClass('btn-success').text('Active');
+                if (response.status === 'success') {
+                    alert('User updated successfully!');
+                    $('#sidebar').hide();
                 } else {
-                    statusLabel.removeClass('btn-success').addClass('btn-danger').text('Inactive');
+                    alert('Error updating user.');
                 }
-                $('.name-' + response.group.id).text(response.group.name);
-                alert("Group updated successfully!");
-                $('#sidebar').fadeOut();
             },
-            error: function(err) {
-                console.log("Error updating group:", err);
+            error: function() {
+                alert('Error occurred while updating user.');
             }
         });
     });
+
+
 });

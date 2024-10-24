@@ -22,85 +22,11 @@ class AdminUserController extends Controller
 
     public function index(Request $request)
     {
-        $search   = $request->input('search');
-        $filterBy = $request->input('filterBy');
-        $query = User::query()->where('role', 'user');
-        if (auth()->user()->role !== 'super-admin') {
-            $query->where('branch_id', auth()->user()->branch_id);
-        }
-
-        if ($search) {
-            switch ($filterBy) {
-                case 'name':
-                    $query->where('name', 'like', "%$search%");
-                    break;
-                case 'email':
-                    $query->where('email', 'like', "%$search%");
-                    break;
-                case 'mobile':
-                    $query->where('mobile', 'like', "%$search%");
-                    break;
-                case 'whatsapp':
-                    $query->where('whatsapp', 'like', "%$search%");
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        $users = $query->paginate(10);
-
-        return view('admin.user.index', compact('users'));
-
+        $users = User::where('role', 'user')->latest()->paginate(10);
+        $branches = Branch::where('status', 'active')->get();
+        
+        return view('admin.user.index', compact('users', 'branches'));
     }
-
-    public function adminIndex()
-    {
-        $data['admins'] = User::where('role', 'admin')->get();
-
-        return view('admin.user.adminindex')->with($data);
-    }
-
-    public function createAdmin()
-    {
-        $data['branches'] = Branch::where('status', 'active')->get();
-
-        return view('admin.user.admin')->with($data);
-    }
-
-    public function fetchUsers(Request $request)
-    {
-        if ($request->ajax()) {
-            $search = $request->input('search');
-            $filterBy = $request->input('filterBy');
-
-            $query = User::query()->where('role', 'user');
-
-            if ($search) {
-                switch ($filterBy) {
-                    case 'name':
-                        $query->where('name', 'like', "%$search%");
-                        break;
-                    case 'email':
-                        $query->where('email', 'like', "%$search%");
-                        break;
-                    case 'mobile':
-                        $query->where('mobile', 'like', "%$search%");
-                        break;
-                    case 'whatsapp':
-                        $query->where('whatsapp', 'like', "%$search%");
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            $users = $query->paginate(10);
-
-            return view('admin.user.partials.user_table', compact('users'))->render();
-        }
-    }
-
 
     public function create()
     {
@@ -150,6 +76,60 @@ class AdminUserController extends Controller
             DB::rollback();
             info($e);
         }
+    }
+
+    public function edit($id)
+    {
+        $user = User::with('branch')->where('id',$id)->first();
+
+        if ($user) {
+            return response()->json([
+                'status' => 'success',
+                'data' => $user
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'User not found.'
+        ], 404);
+    }
+
+    public function update(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $validated = $request->validate([
+                'branch'   => ['required'],
+                'name'     => 'required|string|max:255',
+                'email'    => 'required|email|unique:users',
+                'mobile'   => 'nullable|string|max:15|unique:users',
+                'whatsapp' => 'nullable|string|max:15',
+                'division' => 'nullable',
+                'district' => 'nullable',
+                'upazila'  => 'nullable',
+                'password' => 'required|string|min:8|confirmed',
+            ]);
+            
+        } catch (\Exception $e) {
+            DB::rollback();
+            info($e);
+        }
+    }
+
+    public function adminIndex()
+    {
+        $data['admins'] = User::where('role', 'admin')->get();
+
+        return view('admin.user.adminindex')->with($data);
+    }
+
+    public function createAdmin()
+    {
+        $data['branches'] = Branch::where('status', 'active')->get();
+
+        return view('admin.user.admin')->with($data);
     }
 
     public function storeAdmin(Request $request)

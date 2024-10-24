@@ -71,4 +71,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password'          => 'hashed',
     ];
+
+    // Relation Start
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id', 'id');
+    }
 }

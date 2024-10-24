@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Branch;
 use App\Models\User;
 use App\Models\Notice;
 use App\Models\Setting;
@@ -47,6 +48,16 @@ function getName($id)
 {
     if($id){
         $name = User::find($id);
+        return $name->name;
+    }
+
+    return 'N/A';
+}
+
+function branchName($id)
+{
+    if($id){
+        $name = Branch::find($id);
         return $name->name;
     }
 
