@@ -71,6 +71,39 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="division" class="form-label">Division</label>
+                                <select class="form-control @error('division') is-invalid @enderror" id="division" name="division" value="{{ old('division') }}">
+                                    <option value="" selected disabled>Select Division</option>
+                                    @foreach ($divisions as $division)
+                                        <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                    @endforeach
+                                </select>
+                                @error('division')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="district" class="form-label">District</label>
+                                <select class="form-control @error('district') is-invalid @enderror" id="district" name="district" value="{{ old('district') }}">
+                                    <option value="" selected disabled>Select District</option>
+                                </select>
+                                @error('district')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="upazila" class="form-label">Upazila</label>
+                                <select class="form-control @error('upazila') is-invalid @enderror" id="upazila" name="upazila" value="{{ old('upazila') }}">
+                                    <option value="" selected disabled>Select Upazila</option>
+                                </select>
+                                @error('upazila')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                                 @error('password')
@@ -93,5 +126,7 @@
             </div>
         </div>
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="{{ asset('assets/js/admin/geo.js') }}"></script>
+    <script src="{{ asset('assets/js/alert.js') }}"></script>
 @endsection

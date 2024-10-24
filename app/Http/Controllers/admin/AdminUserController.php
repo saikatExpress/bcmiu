@@ -4,14 +4,15 @@ namespace App\Http\Controllers\admin;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Group;
 use App\Models\Branch;
 use App\Models\Division;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Client\ResponseSequence;
 
 class AdminUserController extends Controller
 {
@@ -37,11 +38,13 @@ class AdminUserController extends Controller
             ->paginate(10);
 
         $branches = Branch::where('status', 'active')->get();
+        $groups   = Group::where('status', 'active')->get();
+
         if ($request->ajax()) {
-            return view('admin.user.partials.user-table', compact('users', 'branches'))->render();
+            return view('admin.user.partials.user-table', compact('users', 'branches', 'groups'))->render();
         }
 
-        return view('admin.user.index', compact('users', 'branches'));
+        return view('admin.user.index', compact('users', 'branches', 'groups'));
     }
 
     public function create()
@@ -169,8 +172,9 @@ class AdminUserController extends Controller
         }
     }
 
-    public function adminIndex()
+    public function adminIndex(Request $request)
     {
+        $data['branches'] = Branch::where('status', 'active')->get();
         $data['admins'] = User::where('role', 'admin')->get();
 
         return view('admin.user.adminindex')->with($data);
@@ -178,7 +182,8 @@ class AdminUserController extends Controller
 
     public function createAdmin()
     {
-        $data['branches'] = Branch::where('status', 'active')->get();
+        $data['divisions'] = Division::all();
+        $data['branches']  = Branch::where('status', 'active')->get();
 
         return view('admin.user.admin')->with($data);
     }
@@ -195,17 +200,20 @@ class AdminUserController extends Controller
         ]);
 
         User::create([
-            'branch_id'  => $validated['branch'],
-            'name'       => $validated['name'],
-            'email'      => $validated['email'],
-            'mobile'     => $validated['mobile'],
-            'whatsapp'   => $validated['whatsapp'] ?? $validated['mobile'],
-            'password'   => Hash::make($validated['password']),
-            'role'       => 'admin',
-            'created_by' => Auth::id(),
-            'joining_at' => Carbon::now(),
-            'status'     => 'active',
-            'created_at' => Carbon::now(),
+            'branch_id'   => $validated['branch'],
+            'name'        => $validated['name'],
+            'email'       => $validated['email'],
+            'mobile'      => $validated['mobile'],
+            'whatsapp'    => $validated['whatsapp'] ?? $validated['mobile'],
+            'division_id' => $request->input('division'),
+            'district_id' => $request->input('district'),
+            'upazila_id'  => $request->input('upazila'),
+            'password'    => Hash::make($validated['password']),
+            'role'        => 'admin',
+            'created_by'  => Auth::id(),
+            'joining_at'  => Carbon::now(),
+            'status'      => 'active',
+            'created_at'  => Carbon::now(),
         ]);
 
         return redirect()->back()->with('message', 'Admin created successfully.');

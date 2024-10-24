@@ -72,6 +72,16 @@
                         @endforeach
                     </select>
                 </div>
+
+                <div class="form-group mt-3">
+                    <label for="branch">Group:</label>
+                    <select name="group_id" id="group_id" class="form-control">
+                        <option value="" selected disabled>Select Group</option>
+                        @foreach ($groups as $group)
+                            <option value="{{ $group->id }}">{{ $group->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <!-- Name -->
                 <div class="form-group mt-3">
                     <label for="name">Name:</label>
@@ -142,7 +152,7 @@
         <footer>
             <div class="mt-3">
                 <p style="color: #000;">
-                    <strong class="text-danger">Be Carefull : </strong> When you update and user,please check information clearly...then you update the information. <br> <i>Thank you.</i>
+                    <strong class="text-danger">Be Carefull : </strong> When you update an user,please check information clearly...then you update the information. <br> <i>Thank you.</i>
                 </p>
             </div>
         </footer>

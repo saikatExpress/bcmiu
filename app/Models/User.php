@@ -19,6 +19,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'branch_id',
+        'group_id',
         'name',
         'email',
         'mobile',
@@ -76,5 +77,10 @@ class User extends Authenticatable
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id', 'id');
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'group_id', 'id');
     }
 }
