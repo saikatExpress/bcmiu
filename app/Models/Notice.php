@@ -10,6 +10,7 @@ class Notice extends Model
     use HasFactory;
 
     protected $fillable = [
+        'notice_image',
         'title',
         'content',
         'type',
@@ -17,6 +18,7 @@ class Notice extends Model
         'effective_date',
         'privacy_type',
         'created_by',
+        'updated_by',
         'status',
         'contact_email',
         'contact_phone',

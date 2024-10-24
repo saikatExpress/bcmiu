@@ -12,7 +12,6 @@
                     <!-- Notice Form -->
                     <form method="POST" action="{{ route('notices.store') }}" id="noticeForm" enctype="multipart/form-data">
                         @csrf
-
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
                             <input id="title" name="title" type="text" class="form-control" value="{{ old('title') }}">
@@ -20,7 +19,10 @@
                                 <p class="text-danger mt-2">{{ $message }}</p>
                             @enderror
                         </div>
-
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Notice Image</label>
+                            <input type="file" class="form-control" id="notice_image" name="notice_image">
+                        </div>
                         <div class="mb-3">
                             <label for="content" class="form-label">Content</label>
                             <textarea id="content" name="content" rows="4" class="form-control">{{ old('content') }}</textarea>
@@ -106,4 +108,15 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+    <script src="{{ asset('assets/js/alert.js') }}"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#content' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection

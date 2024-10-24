@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
+            $table->string('notice_image', 250)->nullable();
             $table->string('title', 250)->nullable();
             $table->text('content')->nullable();
             $table->string('type', 250);
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('contact_phone')->nullable();
             $table->string('privacy_type')->default('own');
             $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->string('status')->default('active');
             $table->timestamps();
 

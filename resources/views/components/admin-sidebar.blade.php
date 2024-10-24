@@ -14,51 +14,78 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link active">
+                <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+            </a>
+
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Home</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fas fa-home me-2"></i>Home
+                </a>
                 <div class="dropdown-menu bg-transparent border-0">
                     @if (auth()->user()->role === 'super-admin')
                         <a href="{{ route('create-admin') }}" class="dropdown-item">
-                            Create Admin
+                            <i class="fas fa-user-plus me-2"></i>Create Admin
                         </a>
                         <a href="{{ route('adminlist') }}" class="dropdown-item">
-                            Admin List
+                            <i class="fas fa-users-cog me-2"></i>Admin List
                         </a>
                     @endif
                     <a href="{{ route('createuser') }}" class="dropdown-item">
-                        Create User
+                        <i class="fas fa-user-plus me-2"></i>Create User
                     </a>
                     <a href="{{ route('userlist') }}" class="dropdown-item">
-                        User List
+                        <i class="fas fa-users me-2"></i>User List
                     </a>
                 </div>
             </div>
 
-            <a href="{{ route('notice') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Notice</a>
+            <a href="{{ route('notice') }}" class="nav-item nav-link">
+                <i class="fas fa-bullhorn me-2"></i>Notice
+            </a>
 
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Branch</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fas fa-building me-2"></i>Branch
+                </a>
                 <div class="dropdown-menu bg-transparent border-0">
                     @if (auth()->user()->role === 'super-admin')
-                        <a href="{{ route('create.branch') }}" class="dropdown-item">Create Branch</a>
-                        <a href="{{ route('branch-list') }}" class="dropdown-item">Branch List</a>
+                        <a href="{{ route('create.branch') }}" class="dropdown-item">
+                            <i class="fas fa-plus me-2"></i>Create Branch
+                        </a>
+                        <a href="{{ route('branch-list') }}" class="dropdown-item">
+                            <i class="fas fa-list me-2"></i>Branch List
+                        </a>
                     @else
-                        <a href="" class="dropdown-item">Your Branch</a>
+                        <a href="" class="dropdown-item">
+                            <i class="fas fa-home me-2"></i>Your Branch
+                        </a>
                     @endif
                 </div>
             </div>
+
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Group</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fas fa-users me-2"></i>Group
+                </a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('create.group') }}" class="dropdown-item">Create Group</a>
-                    <a href="{{ route('group-list') }}" class="dropdown-item">Group List</a>
+                    <a href="{{ route('create.group') }}" class="dropdown-item">
+                        <i class="fas fa-user-friends me-2"></i>Create Group
+                    </a>
+                    <a href="{{ route('group-list') }}" class="dropdown-item">
+                        <i class="fas fa-list-alt me-2"></i>Group List
+                    </a>
                 </div>
             </div>
+
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Settings</a>
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="fas fa-cogs me-2"></i>Settings
+                </a>
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('website.setting') }}" class="dropdown-item">Website Setting</a>
+                    <a href="{{ route('website.setting') }}" class="dropdown-item">
+                        <i class="fas fa-wrench me-2"></i>Website Setting
+                    </a>
                 </div>
             </div>
         </div>

@@ -40,9 +40,21 @@ class NoticeController extends Controller
             'contact_email'  => 'nullable|email',
             'contact_phone'  => 'nullable|string',
             'privacy_type'   => 'required|string',
+            'notice_image'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+        $data = $request->all();
+        if($request->hasFile('notice_image')){
 
-        Notice::create($request->all());
+        }
+
+        if($request->hasFile('notice_image')){
+            $image = $request->file('notice_image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('notices'), $imageName);
+            $data['notice_image'] = 'notices/' . $imageName;
+        }
+
+        Notice::create($data);
 
         return redirect()->route('notices.index')->with('success', 'Notice created successfully.');
     }
