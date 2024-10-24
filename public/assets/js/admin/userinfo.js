@@ -117,9 +117,12 @@ $(document).ready(function() {
         $.ajax({
             url: '/users/' + userId + '/update',
             type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             data: formData,
             success: function(response) {
-                if (response.status === 'success') {
+                if (response && response.status === true) {
                     alert('User updated successfully!');
                     $('#sidebar').hide();
                 } else {

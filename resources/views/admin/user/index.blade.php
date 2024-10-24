@@ -26,59 +26,7 @@
                 <input type="text" name="search" class="form-control" placeholder="Search...">
                 <hr>
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Mobile</th>
-                                <th>Division</th>
-                                <th>District</th>
-                                <th>Upazila</th>
-                                <th>WhatsApp</th>
-                                <th>Joined</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($users as $user)
-                                <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>{{ $user->mobile }}</td>
-                                    <td>
-                                        <a href="https://wa.me/88{{ $user->whatsapp }}" target="_blank">
-                                            {{ $user->whatsapp }}
-                                        </a>
-                                    </td>
-                                    <td>{{ divisionName($user->division_id) }}</td>
-                                    <td>{{ districtName($user->district_id) }}</td>
-                                    <td>{{ upazilaName($user->upazila_id) }}</td>
-                                    <td>{{ $user->created_at->format('Y-m-d') }}</td>
-                                    <td>
-                                        <label for="status" class="btn btn-sm btn-{{ $user->status === 'active' ? 'success' : 'danger' }}">
-                                            {{ ucfirst($user->status) }}
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary editBtn" data-id="{{ $user->id }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-danger">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center">No users found</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                    @include('admin.user.partials.user-table')
                 </div>
             </div>
         </div>
@@ -175,7 +123,7 @@
                 <!-- Role -->
                 <div class="form-group mt-3">
                     <label for="role">Role:</label>
-                    <input type="text" id="role" class="form-control" name="role">
+                    <input type="text" id="role" class="form-control" name="role" readonly>
                 </div>
 
                 <!-- Status -->
@@ -203,4 +151,5 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('assets/js/alert.js') }}"></script>
     <script src="{{ asset('assets/js/admin/userinfo.js') }}"></script>
+    <script src="{{ asset('assets/js/admin/usertable.js') }}"></script>
 @endsection

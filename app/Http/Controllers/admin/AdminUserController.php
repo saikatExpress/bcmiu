@@ -9,6 +9,7 @@ use App\Models\Division;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Client\ResponseSequence;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,9 +23,24 @@ class AdminUserController extends Controller
 
     public function index(Request $request)
     {
-        $users = User::where('role', 'user')->latest()->paginate(10);
+        $search = $request->input('search');
+
+        $users = User::where('role', 'user')
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%')
+                    ->orWhere('mobile', 'like', '%' . $search . '%')
+                    ->orWhere('whatsapp', 'like', '%' . $search . '%')
+                    ->orWhere('id', $search);
+            })
+            ->latest()
+            ->paginate(10);
+
         $branches = Branch::where('status', 'active')->get();
-        
+        if ($request->ajax()) {
+            return view('admin.user.partials.user-table', compact('users', 'branches'))->render();
+        }
+
         return view('admin.user.index', compact('users', 'branches'));
     }
 
@@ -101,16 +117,51 @@ class AdminUserController extends Controller
             DB::beginTransaction();
 
             $validated = $request->validate([
-                'branch'   => ['required'],
+                'branch'   => 'required',
                 'name'     => 'required|string|max:255',
-                'email'    => 'required|email|unique:users',
-                'mobile'   => 'nullable|string|max:15|unique:users',
+                'email'    => 'required|email',
+                'mobile'   => 'nullable|string|max:15',
                 'whatsapp' => 'nullable|string|max:15',
-                'division' => 'nullable',
-                'district' => 'nullable',
-                'upazila'  => 'nullable',
-                'password' => 'required|string|min:8|confirmed',
             ]);
+
+            $id = $request->input('userId');
+            $branch = $request->input('branch');
+            $email = $request->input('email');
+            $mobile = $request->input('mobile');
+            $whatsapp = $request->input('whatsapp');
+            $division_id = $request->input('division_id');
+            $district_id = $request->input('district_id');
+            $upazila_id = $request->input('upazila_id');
+            $status = $request->input('status');
+
+            $user = User::findOrFail($id);
+
+            if($user){
+                if($branch){
+                    $user->branch_id = $branch;
+                }
+                $user->name = $request->input('name');
+                $user->email = $email;
+                $user->mobile = $mobile;
+                $user->whatsapp = $whatsapp;
+                if($division_id){
+                    $user->division_id = $division_id;
+                }
+                if($district_id){
+                    $user->district_id = $district_id;
+                }
+                if($upazila_id){
+                    $user->upazila_id = $upazila_id;
+                }
+                $user->status = $status;
+
+                $res = $user->save();
+
+                DB::commit();
+                if($res){
+                    return response()->json(['status' => true]);
+                }
+            }
             
         } catch (\Exception $e) {
             DB::rollback();
