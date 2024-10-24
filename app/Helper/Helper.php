@@ -1,10 +1,11 @@
 <?php
 
-use App\Models\District;
-use App\Models\Division;
+use App\Models\User;
 use App\Models\Notice;
 use App\Models\Setting;
 use App\Models\Upazila;
+use App\Models\District;
+use App\Models\Division;
 
 function welcome()
 {
@@ -37,6 +38,16 @@ function upazilaName($id)
     if($id){
         $upazila = Upazila::find($id);
         return $upazila->name;
+    }
+
+    return 'N/A';
+}
+
+function getName($id)
+{
+    if($id){
+        $name = User::find($id);
+        return $name->name;
     }
 
     return 'N/A';

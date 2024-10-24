@@ -49,6 +49,13 @@
                 </div>
             </div>
             <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Group</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="{{ route('create.group') }}" class="dropdown-item">Create Group</a>
+                    <a href="{{ route('group-list') }}" class="dropdown-item">Group List</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Settings</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('website.setting') }}" class="dropdown-item">Website Setting</a>

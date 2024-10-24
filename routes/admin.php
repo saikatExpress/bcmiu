@@ -10,7 +10,7 @@ use App\Http\Controllers\admin\BranchController;
 use App\Http\Controllers\admin\NoticeController;
 use App\Http\Controllers\admin\ServiceController;
 use App\Http\Controllers\admin\WebsiteController;
-
+use App\Http\Controllers\GroupController;
 
 Route::middleware(['auth', 'CheckAdmin'])->group(function(){
     Route::prefix('dashboard')->group(function(){
@@ -52,6 +52,18 @@ Route::middleware(['auth', 'CheckAdmin'])->group(function(){
             Route::get('/delete/{id}', 'destroy')->name('notice-destroy');
         });
     });
+
+    Route::prefix('group')->group(function(){
+        Route::controller(GroupController::class)->group(function(){
+            Route::get('/list', 'index')->name('group-list');
+            Route::get('/create', 'create')->name('create.group');
+            Route::post('/store', 'store')->name('group-store');
+        });
+    });
+
+    Route::get('/groups/{id}/edit', [GroupController::class, 'edit']);
+    Route::put('/groups/{id}', [GroupController::class, 'update']);
+    Route::get('/group/delete/{id}', [GroupController::class, 'destroy']);
 
     Route::controller(WebsiteController::class)->group(function(){
         Route::get('/website/setting', 'create')->name('website.setting');

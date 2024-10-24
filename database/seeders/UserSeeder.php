@@ -29,6 +29,22 @@ class UserSeeder extends Seeder
                 'password'   => Hash::make($password),
                 'role'       => 'super-admin',
                 'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'id'          => 1000,
+                'name'        => 'Sharif Mandol',
+                'email'       => 'sharif@gmail.com',
+                'mobile'      => '01703761685',
+                'whatsapp'    => '01703761685',
+                'division_id' => 8,
+                'district_id' => 64,
+                'upazila_id'  => 490,
+                'address'     => 'Banasree,Rampura,Dhaka',
+                'password'    => Hash::make($password),
+                'role'        => 'user',
+                'created_at'  => $now,
+                'updated_at'  => $now,
             ],
         ]);
     }

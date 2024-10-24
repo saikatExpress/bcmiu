@@ -11,6 +11,7 @@
                 <th>Upazila</th>
                 <th>WhatsApp</th>
                 <th>Joined At</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,14 @@
                     <td>{{ districtName($user->district_id) }}</td>
                     <td>{{ upazilaName($user->upazila_id) }}</td>
                     <td>{{ $user->created_at->format('Y-m-d') }}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary editBtn" data-id="{{ $user->id }}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
                 </tr>
             @empty
                 <tr>
@@ -41,3 +50,4 @@
     <!-- Pagination Links -->
     {{ $users->appends(request()->query())->links() }}
 </div>
+

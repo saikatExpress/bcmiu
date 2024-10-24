@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             DivisionSeeder::class,
             DistrictSeeder::class,
             UpazilaSeeder::class,
+            GroupSeeder::class,
             SettingSeeder::class,
         ]);
     }

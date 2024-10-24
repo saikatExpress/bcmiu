@@ -49,6 +49,9 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('assets/js/alert.js') }}"></script>
+    <script src="{{ asset('assets/js/userinfo.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('#search-form').on('submit', function(e) {
@@ -62,18 +65,6 @@
                     }
                 });
             });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            setTimeout(function() {
-                $('#successAlert').fadeOut('slow');
-            }, 2000);
-
-            setTimeout(function() {
-                $('#errorAlert').fadeOut('slow');
-            }, 2000);
         });
     </script>
 @endsection
