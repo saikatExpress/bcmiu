@@ -43,9 +43,6 @@ class NoticeController extends Controller
             'notice_image'   => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         $data = $request->all();
-        if($request->hasFile('notice_image')){
-
-        }
 
         if($request->hasFile('notice_image')){
             $image = $request->file('notice_image');

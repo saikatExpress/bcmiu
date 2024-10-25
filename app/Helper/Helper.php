@@ -82,6 +82,15 @@ function projectName()
     return $name->project_name;
 }
 
+function getFirst100Characters($content) {
+    $plainText = strip_tags($content);
+
+    $trimmedText = mb_substr($plainText, 0, 50, 'UTF-8');
+
+    return $trimmedText . (mb_strlen($plainText, 'UTF-8') > 50 ? '...' : '');
+}
+
+
 function divisions()
 {
     return Division::all();

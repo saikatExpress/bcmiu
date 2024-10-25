@@ -33,8 +33,8 @@
                                     @forelse ($notices as $notice)
                                         <tr>
                                             <td>{{ $notice->id }}</td>
-                                            <td>{{ $notice->title }}</td>
-                                            <td>{{ $notice->content }}</td>
+                                            <td>{{ getFirst100Characters($notice->title) }}</td>
+                                            <td>{!! getFirst100Characters($notice->content) !!}</td>
                                             <td>{{ $notice->type }}</td>
                                             <td>{{ $notice->publish_date }}</td>
                                             <td>{{ $notice->effective_date }}</td>
