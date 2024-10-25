@@ -81,3 +81,8 @@ function projectName()
     $name = Setting::first();
     return $name->project_name;
 }
+
+function divisions()
+{
+    return Division::all();
+}

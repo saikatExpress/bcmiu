@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>BCMIU - Bangladesh Capital Market Investor Union</title>
+    <title>{{ projectName() }} - Bangladesh General Investor Association</title>
     <link rel="shortcut icon" href="{{ asset('logos/fav.png') }}" type="image/x-icon">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
