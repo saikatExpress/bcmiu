@@ -29,9 +29,12 @@ class PostController extends Controller
 
             if ($request->hasFile('media')) {
                 $filename = time() . '.' . $request->media->getClientOriginalExtension();
-                $request->media->storeAs('uploads', $filename);
+                
+                $request->media->move(public_path('uploads'), $filename);
+                
                 $post->media = $filename;
             }
+
 
             if ($request->division_id) {
                 $post->division_id = $request->division_id;
@@ -42,7 +45,19 @@ class PostController extends Controller
             $res = $post->save();
             DB::commit();
             if($res){
-                return response()->json(['success' => true, 'message' => 'Post submitted successfully!']);
+                return response()->json([
+                    'success' => true, 
+                    'message' => 'Post submitted successfully!',
+                    'post' => [
+                        'content' => $post->content,
+                        'media' => $post->media ? asset('uploads/' . $post->media) : null,
+                        'created_at' => $post->created_at->diffForHumans(),
+                        'user' => [
+                            'name' => Auth::user()->name,
+                            'profile_picture' => Auth::user()->profile_picture ? asset('uploads/' . Auth::user()->profile_picture) : asset('assets/img/demo.jpg')
+                        ]
+                    ]
+                ]);
             }
         } catch (\Exception $e) {
             DB::rollback();

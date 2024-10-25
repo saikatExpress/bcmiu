@@ -29,7 +29,7 @@
                             <i class="fas fa-image"></i> Photo/Video
                         </button>
                         <span class="text-danger mediaErr" style="font-size: 12px;"></span>
-                        <button class="post-option" id="check-in-btn">
+                        <button type="button" class="post-option" id="check-in-btn">
                             <i class="fas fa-map-marker-alt"></i> Check In
                         </button>
                     </div>
@@ -91,7 +91,12 @@
                         </div>
                     </div>
 
-                    <input type="text" class="comment-input" placeholder="Write a comment...">
+                    <div class="input-wrapper">
+                        <input type="text" class="user-comment-input" placeholder="Write a comment...">
+                        <button class="submit-icon" style="display: none;">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
                 </div>
 
             </div>
@@ -99,6 +104,7 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/admin/post.js') }}"></script>
 
 @endsection
