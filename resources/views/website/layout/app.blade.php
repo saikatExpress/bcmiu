@@ -75,16 +75,6 @@
                                 Login
                             </small>
                         </a>
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle text-dark" data-bs-toggle="dropdown"><small><i class="fa fa-home text-primary me-2"></i> My Dashboard</small></a>
-                            <div class="dropdown-menu rounded">
-                                <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -127,8 +117,10 @@
                     <div class="col-md-6 col-lg-6 col-xl-2">
                         <div class="footer-item">
                             <h4 class="text-white mb-4">Quick Links</h4>
-                            <a href="{{ route('about') }}"><i class="fas fa-angle-right me-2"></i> About Us</a>
-                            <a href="#"><i class="fas fa-angle-right me-2"></i> Feature</a>
+                            <a href="{{ route('about') }}">
+                                <i class="fas fa-angle-right me-2"></i> 
+                                About Us
+                            </a>
                             <a href="#"><i class="fas fa-angle-right me-2"></i> Attractions</a>
                             <a href="#"><i class="fas fa-angle-right me-2"></i> Tickets</a>
                             <a href="#"><i class="fas fa-angle-right me-2"></i> Blog</a>

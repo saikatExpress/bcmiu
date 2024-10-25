@@ -36,17 +36,6 @@
         <div class="navbar-nav ms-auto py-0">
             <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
             <a href="javascript:void();" data-url="{{ route('about') }}" class="nav-item nav-link menuBtn">About</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                    <span class="dropdown-toggle">Pages</span>
-                </a>
-                <div class="dropdown-menu m-0">
-                    <a href="javascript:void();" data-url="{{ route('feature') }}" class="dropdown-item menuBtn">Our Features (বৈশিষ্ট্য)</a>
-                    <a href="javascript:void();" data-url="{{ route('instruction') }}" class="dropdown-item menuBtn">Instructions(নিয়মাবলী)</a>
-                    <a href="javascript:void();" data-url="{{ route('offer') }}" class="dropdown-item menuBtn">Our offer (প্রস্তাব)</a>
-                    <a href="javascript:void();" data-url="{{ route('feedback') }}" class="dropdown-item menuBtn">Feedback (প্রতিক্রিয়া)</a>
-                </div>
-            </div>
             <a href="https://wa.me/88{{ $setting->project_mobile }}?text=Hello%20" class="nav-item nav-link" target="_blank">Contact</a>
         </div>
         <a href="{{ route('login') }}" class="btn btn-primary rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 d-none d-lg-inline">

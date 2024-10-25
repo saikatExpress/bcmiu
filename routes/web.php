@@ -65,18 +65,13 @@ Route::controller(HomeController::class)->group(function(){
     Route::get('/terms/condition', 'term')->name('termscondition');
     Route::get('/privacy/policy', 'privacypolicy')->name('privacy.policy');
     Route::get('/support', 'support')->name('support');
-    Route::get('/service/show/{id}', 'show')->name('service.show');
     Route::get('/disclaimer', 'disclaimer')->name('disclaimer');
     Route::get('/help', 'help')->name('help');
-    Route::get('/instruction', 'instruction')->name('instruction');
-    Route::get('/feature', 'feature')->name('feature');
-    Route::get('/offer', 'offer')->name('offer');
-    Route::get('/package/view/{slug}', 'view')->name('package.view');
-    Route::post('/buy', 'purchase')->name('buy');
-    Route::get('/get/user/via/email/{email}', 'getUserViaEmail');
+
+    
+    Route::get('/service/show/{id}', 'show')->name('service.show');
     Route::get('/feedback', 'feedback')->name('feedback');
     Route::post('/feedback/store', 'store')->name('feedback.store');
-    Route::get('/retrive/user/{email}', 'retriveUser');
 });
 
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout.us');
