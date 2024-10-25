@@ -60,7 +60,7 @@
         {{-- User Post --}}
 
         <div class="row" id="feed" style="margin-top: 20px;">
-            <div class="post">
+            {{-- <div class="post">
                 <div class="user-post-header">
                     <img src="{{ asset('assets/img/demo.jpg') }}" alt="Profile Picture" class="profile-pic">
                     <div class="user-infos">
@@ -99,12 +99,13 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('assets/js/admin/post.js') }}"></script>
+    <script src="{{ asset('assets/js/admin/feed.js') }}"></script>
 
 @endsection

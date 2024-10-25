@@ -18,4 +18,15 @@ class Post extends Model
         'is_approve',
         'flag',
     ];
+
+    //Relation Start
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 }

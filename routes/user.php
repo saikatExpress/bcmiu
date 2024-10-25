@@ -13,6 +13,8 @@ Route::middleware(['auth', 'CheckUser'])->group(function(){
     });
 
     Route::controller(PostController::class)->group(function(){
+        Route::get('/feed', 'fetchPosts')->name('feed');
         Route::post('/post/store', 'store')->name('posts.store');
+        Route::post('/comments/store', 'commentStore')->name('comments.store');
     });
 });

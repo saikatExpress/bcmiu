@@ -23,4 +23,15 @@ class Notice extends Model
         'contact_email',
         'contact_phone',
     ];
+
+    //Relation Start
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'post_id', 'id');
+    }
 }

@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $notices = Notice::latest()->get();
-        // return $notices;
+        
         return view('user.home.index', compact('notices'));
     }
 }

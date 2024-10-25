@@ -50,7 +50,7 @@ class NoticeController extends Controller
             $image->move(public_path('notices'), $imageName);
             $data['notice_image'] = 'notices/' . $imageName;
         }
-
+        $data['created_by'] = auth()->user()->id;
         Notice::create($data);
 
         return redirect()->route('notices.index')->with('success', 'Notice created successfully.');
