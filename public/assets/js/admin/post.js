@@ -88,7 +88,7 @@ $(document).ready(function () {
         var newPost = `
             <div class="post">
                 <div class="user-post-header">
-                    <img src="${post.user.profile_picture}" alt="Profile Picture" class="profile-pic">
+                    <img style="width: 100%;" src="${post.user.profile_picture}" alt="Profile Picture" class="profile-pic">
                     <div class="user-infos">
                         <h4 class="username">${post.user.name}</h4>
                         <span class="timestamp">${post.created_at}</span>

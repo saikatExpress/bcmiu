@@ -70,7 +70,7 @@
                 </div>
                 <div class="post-content">
                     <p>Check out my latest adventure! 🌄</p>
-                    <img src="{{ asset('assets/img/istockphoto-904172104-612x612.jpg') }}" alt="Adventure Photo" class="post-image">
+                    <img style="width: 100%;" src="{{ asset('assets/img/istockphoto-904172104-612x612.jpg') }}" alt="Adventure Photo" class="post-image">
                 </div>
                 <div class="post-interactions">
                     <button class="like-button">👍 Like</button>
