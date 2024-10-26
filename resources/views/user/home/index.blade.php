@@ -4,20 +4,10 @@
         @php
             $divisions = divisions();
         @endphp
-        <div class="row" style="position: relative;">
-            <header class="user-header">
-                <ul class="division-list">
-                    @foreach ($divisions as $division)
-                        <li class="division_link" data-id="{{ $division->id }}">{{ $division->name }}</li>
-                    @endforeach
-                </ul>
-            </header>
-        </div>
-
         {{-- User Post --}}
         <form id="post-form" action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="row mt-2">
+            <div class="row">
                 <div class="facebook-post-form">
                     <div class="post-header">
                         <img src="{{ asset('assets/img/demo.jpg') }}" alt="Profile Picture" class="profile-pic">

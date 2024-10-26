@@ -60,6 +60,22 @@
                     <a href="{{ route('user.dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
 
                     <a href="#" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Notices</a>
+                    @php
+                        $divisions = divisions();
+                    @endphp
+                    <div class="card" style="margin-left: 2px; width:110%;">
+                        <div class="card-header">
+                            <h6 class="mb-0 text-success">Division wise news</h6>
+                        </div>
+                        <div class="card-body">
+                            @foreach ($divisions as $division)
+                                <a href="#" class="nav-item nav-link">
+                                    <i class="fa fa-building me-2"></i>{{ $division->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    
                 </div>
             </nav>
         </div>
@@ -139,8 +155,8 @@
                             <span class="d-none d-lg-inline-flex">{{ auth()->user()->name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="{{ route('user.profile') }}" class="dropdown-item">My Profile</a>
+                            <a href="{{ route('user.settings') }}" class="dropdown-item">Settings</a>
                             <a href="{{ route('logout.us') }}" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
